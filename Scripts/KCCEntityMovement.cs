@@ -145,7 +145,11 @@ namespace MultiplayerARPG
         public override void ComponentOnEnable()
         {
             CacheMotor.enabled = true;
-            CacheMotor.SetPosition(CacheTransform.position);
+            try
+            {
+                CacheMotor.SetPosition(CacheTransform.position);
+            }
+            catch { }
             verticalVelocity = 0;
         }
 
