@@ -570,7 +570,7 @@ namespace MultiplayerARPG
             }
 
             // Update current velocity
-            currentVelocity = (tempMoveVelocity + platformMotion) * deltaTime;
+            currentVelocity = tempMoveVelocity + platformMotion;
 
             lookRotationApplied = true;
             currentInput = this.SetInputRotation(currentInput, CacheTransform.rotation);
