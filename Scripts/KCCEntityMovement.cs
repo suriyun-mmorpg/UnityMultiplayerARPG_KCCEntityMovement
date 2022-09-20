@@ -107,6 +107,7 @@ namespace MultiplayerARPG
         protected bool isTeleporting;
         protected bool isServerWaitingTeleportConfirm;
         protected bool isClientConfirmingTeleport;
+        protected Vector3 internalVelocityAdd;
 
         public override void EntityAwake()
         {
@@ -310,6 +311,7 @@ namespace MultiplayerARPG
             else if (Mathf.Abs(yAngle - targetYAngle) > 1f)
                 yAngle = Mathf.LerpAngle(yAngle, targetYAngle, yTurnSpeed * deltaTime);
             currentRotation = Quaternion.Euler(0, yAngle, 0);
+            lookRotationApplied = true;
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
@@ -335,7 +337,7 @@ namespace MultiplayerARPG
             bool isAirborne = !isGrounded && !isUnderWater && airborneElapsed >= airborneDelay;
 
             // Update airborne elasped
-            if (CacheMotor.GroundingStatus.IsStableOnGround)
+            if (isGrounded)
                 airborneElapsed = 0f;
             else
                 airborneElapsed += deltaTime;
@@ -435,12 +437,13 @@ namespace MultiplayerARPG
                 applyJumpForceCountDown -= Time.deltaTime;
                 if (applyJumpForceCountDown <= 0f)
                 {
+                    isGrounded = false;
                     applyingJumpForce = false;
                     if (!useRootMotionForJump)
                         verticalVelocity = CalculateJumpVerticalSpeed();
+                    CacheMotor.ForceUnground(0.1f);
                 }
             }
-
             // Updating horizontal movement (WASD inputs)
             if (!isAirborne)
             {
@@ -568,7 +571,6 @@ namespace MultiplayerARPG
                 {
                     Vector3 newGroundedPosition = groundedTransform.TransformPoint(groundedLocalPosition);
                     platformMotion = (newGroundedPosition - oldGroundedPosition) / deltaTime;
-                    platformMotion.y = 0;
                     oldGroundedPosition = newGroundedPosition;
                 }
             }
@@ -576,7 +578,6 @@ namespace MultiplayerARPG
             // Update current velocity
             currentVelocity = tempMoveVelocity + platformMotion;
 
-            lookRotationApplied = true;
             currentInput = this.SetInputRotation(currentInput, CacheTransform.rotation);
             isJumping = false;
             acceptedJump = false;
@@ -637,6 +638,7 @@ namespace MultiplayerARPG
 
         public void AddVelocity(Vector3 velocity)
         {
+            internalVelocityAdd += velocity;
         }
 
         public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport)
