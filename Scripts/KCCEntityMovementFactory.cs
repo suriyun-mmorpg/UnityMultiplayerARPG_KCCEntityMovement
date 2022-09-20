@@ -5,7 +5,7 @@ namespace MultiplayerARPG
 {
     public class KCCEntityMovementFactory : IEntityMovementFactory
     {
-        public string Name => "KCC Entity Movement Factory";
+        public string Name => "KCC Entity Movement";
 
         public DimensionType DimensionType => DimensionType.Dimension3D;
 
