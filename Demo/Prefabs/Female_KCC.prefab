@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56367cc2ed44f1e49835e9c247771fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetId: 
+  assetId: 81fb7934e1c43164ca98a8ab393caee7
   objectId: 0
   visibleRange: 0
   alwaysVisible: 0
@@ -397,23 +397,8 @@ MonoBehaviour:
   model: {fileID: 0}
   cameraTargetTransform: {fileID: 374512570995469209}
   fpsCameraTargetTransform: {fileID: 374512570995469209}
-  movementSecure: 1
   canSideSprint: 0
   canBackwardSprint: 0
-  passengingVehicle:
-    behaviour: {fileID: 0}
-    elementId: 0
-    alwaysSync: 0
-    doNotSyncInitialDataImmediately: 1
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value:
-      objectId: 0
-      seatIndex: 0
   combatTextTransform: {fileID: 374512570995468976}
   opponentAimTransform: {fileID: 69030288027079652}
   isStaticHitBoxes: 0
@@ -6705,6 +6690,7 @@ MonoBehaviour:
   sendOptions: 0
   sendInterval: 0.1
   stoppingDistance: 0.1
+  movementSecure: 1
   allowJumpingWhenSliding: 0
   jumpHeight: 2
   applyJumpForceMode: 0
