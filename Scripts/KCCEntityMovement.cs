@@ -12,7 +12,7 @@ namespace MultiplayerARPG
     [RequireComponent(typeof(KinematicCharacterMotor))]
     public class KCCEntityMovement : BaseNetworkedGameEntityComponent<BaseGameEntity>, IEntityMovementComponent, ICharacterController
     {
-        protected static readonly RaycastHit[] s_findGroundRaycastHits = new RaycastHit[25];
+        protected static readonly RaycastHit[] s_findGroundRaycastHits = new RaycastHit[4];
         protected static readonly long s_lagBuffer = System.TimeSpan.TicksPerMillisecond * 200;
         protected static readonly float s_lagBufferUnityTime = 0.2f;
 
