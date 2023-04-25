@@ -195,7 +195,7 @@ namespace MultiplayerARPG
             if (movementSecure == MovementSecure.ServerAuthoritative)
             {
                 // Send movement input to server, then server will apply movement and sync transform to clients
-                this.SetInputStop(_currentInput);
+                Entity.SetInputStop(_currentInput);
             }
             StopMoveFunction();
         }
@@ -480,16 +480,16 @@ namespace MultiplayerARPG
                 tempMoveVelocity = tempHorizontalMoveDirection * CurrentMoveSpeed;
                 _velocityBeforeAirborne = tempMoveVelocity;
                 // Set inputs
-                _currentInput = this.SetInputMovementState(_currentInput, _tempMovementState);
+                _currentInput = Entity.SetInputMovementState(_currentInput, _tempMovementState);
                 if (HasNavPaths)
                 {
-                    _currentInput = this.SetInputPosition(_currentInput, tempTargetPosition);
-                    _currentInput = this.SetInputIsKeyMovement(_currentInput, false);
+                    _currentInput = Entity.SetInputPosition(_currentInput, tempTargetPosition);
+                    _currentInput = Entity.SetInputIsKeyMovement(_currentInput, false);
                 }
                 else
                 {
-                    _currentInput = this.SetInputPosition(_currentInput, tempPredictPosition);
-                    _currentInput = this.SetInputIsKeyMovement(_currentInput, true);
+                    _currentInput = Entity.SetInputPosition(_currentInput, tempPredictPosition);
+                    _currentInput = Entity.SetInputIsKeyMovement(_currentInput, true);
                 }
             }
             if (IsOwnerClientOrOwnedByServer)
@@ -548,7 +548,7 @@ namespace MultiplayerARPG
                         _moveDirection.y = 0f;
                     tempMoveVelocity.y = _moveDirection.y * CurrentMoveSpeed;
                     if (!HasNavPaths)
-                        _currentInput = this.SetInputYPosition(_currentInput, tempPredictPosition.y);
+                        _currentInput = Entity.SetInputYPosition(_currentInput, tempPredictPosition.y);
                 }
             }
             else
@@ -582,7 +582,7 @@ namespace MultiplayerARPG
             // Update current velocity
             currentVelocity = tempMoveVelocity + platformMotion;
 
-            _currentInput = this.SetInputRotation(_currentInput, CacheTransform.rotation);
+            _currentInput = Entity.SetInputRotation(_currentInput, CacheTransform.rotation);
             _isJumping = false;
             _acceptedJump = false;
             _previouslyGrounded = isGrounded;
@@ -745,22 +745,22 @@ namespace MultiplayerARPG
             }
             if (movementSecure == MovementSecure.ServerAuthoritative && IsOwnerClient && !IsServer)
             {
-                _currentInput = this.SetInputExtraMovementState(_currentInput, _tempExtraMovementState);
+                _currentInput = Entity.SetInputExtraMovementState(_currentInput, _tempExtraMovementState);
                 if (_sendingJump)
                 {
                     shouldSendReliably = true;
-                    _currentInput = this.SetInputJump(_currentInput);
+                    _currentInput = Entity.SetInputJump(_currentInput);
                 }
                 else
                 {
-                    _currentInput = this.ClearInputJump(_currentInput);
+                    _currentInput = Entity.ClearInputJump(_currentInput);
                 }
                 if (_isClientConfirmingTeleport)
                 {
                     shouldSendReliably = true;
                     _currentInput.MovementState |= MovementState.IsTeleport;
                 }
-                if (this.DifferInputEnoughToSend(_oldInput, _currentInput, out EntityMovementInputState inputState))
+                if (Entity.DifferInputEnoughToSend(_oldInput, _currentInput, out EntityMovementInputState inputState))
                 {
                     if (!_currentInput.IsKeyMovement)
                     {
