@@ -52,7 +52,9 @@ namespace MultiplayerARPG
             float radius = Mathf.Min(bounds.extents.x, bounds.extents.z);
             kccMotor.SetCapsuleDimensions(radius, height, height * 0.5f);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             return obj.AddComponent<RigidBodyEntityMovement>();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }
