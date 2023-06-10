@@ -231,7 +231,7 @@ namespace MultiplayerARPG
             _yAngle = yAngle;
         }
 
-        public void OnJumpForceApplied()
+        public void OnJumpForceApplied(float verticalVelocity)
         {
             CacheMotor.ForceUnground(0.1f);
         }
