@@ -36,6 +36,9 @@ namespace MultiplayerARPG
         public float underWaterThreshold = 0.75f;
         public bool autoSwimToSurface;
 
+        [Header("Ground checking")]
+        public float forceUngroundAfterJumpDuration = 0.1f;
+
         [Header("Root Motion Settings")]
         public bool useRootMotionForMovement;
         public bool useRootMotionForAirMovement;
@@ -233,7 +236,7 @@ namespace MultiplayerARPG
 
         public void OnJumpForceApplied(float verticalVelocity)
         {
-            CacheMotor.ForceUnground(0.1f);
+            CacheMotor.ForceUnground(forceUngroundAfterJumpDuration);
         }
 
         public bool WriteClientState(long writeTimestamp, NetDataWriter writer, out bool shouldSendReliably)
