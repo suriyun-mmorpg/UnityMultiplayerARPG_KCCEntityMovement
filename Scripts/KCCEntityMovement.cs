@@ -181,6 +181,7 @@ namespace MultiplayerARPG
         public void AfterCharacterUpdate(float deltaTime)
         {
             Functions.AfterMovementUpdate(deltaTime);
+            Functions.FixSwimUpPosition(deltaTime);
         }
 
         public bool IsColliderValidForCollisions(Collider coll)
