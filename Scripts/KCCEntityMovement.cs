@@ -4,6 +4,7 @@ using LiteNetLibManager;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace MultiplayerARPG
 {
@@ -40,11 +41,12 @@ namespace MultiplayerARPG
         public float forceUngroundAfterJumpDuration = 0.1f;
 
         [Header("Root Motion Settings")]
+        [FormerlySerializedAs("useRootMotionWhileNotMoving")]
+        public bool alwaysUseRootMotion;
         public bool useRootMotionForMovement;
         public bool useRootMotionForAirMovement;
         public bool useRootMotionForJump;
         public bool useRootMotionForFall;
-        public bool useRootMotionWhileNotMoving;
         public bool useRootMotionUnderWater;
 
         [Header("Networking Settings")]
@@ -108,11 +110,11 @@ namespace MultiplayerARPG
                 afterCrawlingPauseMovementDuration = afterCrawlingPauseMovementDuration,
                 underWaterThreshold = underWaterThreshold,
                 autoSwimToSurface = autoSwimToSurface,
+                alwaysUseRootMotion = alwaysUseRootMotion,
                 useRootMotionForMovement = useRootMotionForMovement,
                 useRootMotionForAirMovement = useRootMotionForAirMovement,
                 useRootMotionForJump = useRootMotionForJump,
                 useRootMotionForFall = useRootMotionForFall,
-                useRootMotionWhileNotMoving = useRootMotionWhileNotMoving,
                 useRootMotionUnderWater = useRootMotionUnderWater,
                 snapThreshold = snapThreshold,
             };
