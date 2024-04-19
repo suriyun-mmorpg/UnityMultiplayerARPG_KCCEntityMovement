@@ -30,15 +30,25 @@ namespace MultiplayerARPG
         [Tooltip("Delay before character change from grounded state to airborne")]
         public float airborneDelay = 0.01f;
         public bool doNotChangeVelocityWhileAirborne;
+
+        [Header("Pausing")]
         public float landedPauseMovementDuration = 0f;
         public float beforeCrawlingPauseMovementDuration = 0f;
         public float afterCrawlingPauseMovementDuration = 0f;
+
+        [Header("Swimming")]
         [Range(0.1f, 1f)]
         public float underWaterThreshold = 0.75f;
         public bool autoSwimToSurface;
 
         [Header("Ground checking")]
         public float forceUngroundAfterJumpDuration = 0.1f;
+
+        [Header("Dashing")]
+        public EntityMovementForceApplier dashingForceApplier = new EntityMovementForceApplier();
+
+        [Header("Knocking Back")]
+        public EntityMovementForceApplier knockingBackForceApplier = new EntityMovementForceApplier();
 
         [Header("Root Motion Settings")]
         [FormerlySerializedAs("useRootMotionWhileNotMoving")]
@@ -111,6 +121,8 @@ namespace MultiplayerARPG
                 underWaterThreshold = underWaterThreshold,
                 autoSwimToSurface = autoSwimToSurface,
                 alwaysUseRootMotion = alwaysUseRootMotion,
+                dashingForceApplier = dashingForceApplier,
+                knockingBackForceApplier = knockingBackForceApplier,
                 useRootMotionForMovement = useRootMotionForMovement,
                 useRootMotionForAirMovement = useRootMotionForAirMovement,
                 useRootMotionForJump = useRootMotionForJump,
