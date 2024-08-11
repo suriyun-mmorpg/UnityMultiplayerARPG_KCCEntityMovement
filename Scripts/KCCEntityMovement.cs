@@ -230,7 +230,7 @@ namespace MultiplayerARPG
             return CacheMotor.GroundingStatus.IsStableOnGround;
         }
 
-        public Bounds GetBounds()
+        public Bounds GetMovementBounds()
         {
             return CacheCapsuleCollider.bounds;
         }
