@@ -81,6 +81,8 @@ namespace MultiplayerARPG
         {
             // Prepare animator component
             CacheAnimator = GetComponent<Animator>();
+            if (CacheAnimator == null)
+                CacheAnimator = GetComponentInChildren<Animator>();
             // Prepare rigidbody component
             CacheRigidbody = gameObject.GetOrAddComponent<Rigidbody>();
             // Prepare collider component
