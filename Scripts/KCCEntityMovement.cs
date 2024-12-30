@@ -87,10 +87,6 @@ namespace MultiplayerARPG
             CacheRigidbody = gameObject.GetOrAddComponent<Rigidbody>();
             // Prepare collider component
             CacheCapsuleCollider = gameObject.GetOrAddComponent<CapsuleCollider>();
-            // Prepare open character controller
-            float radius = CacheCapsuleCollider.radius;
-            float height = CacheCapsuleCollider.height;
-            Vector3 center = CacheCapsuleCollider.center;
             CacheMotor = gameObject.GetOrAddComponent<KinematicCharacterMotor>();
             CacheMotor.CharacterController = this;
             // Disable unused component
