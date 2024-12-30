@@ -3,7 +3,6 @@ using LiteNetLib.Utils;
 using LiteNetLibManager;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 namespace MultiplayerARPG
