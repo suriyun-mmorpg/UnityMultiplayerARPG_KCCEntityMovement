@@ -107,7 +107,6 @@ namespace MultiplayerARPG
                 backwardMoveSpeedRate = backwardMoveSpeedRate,
                 gravity = gravity,
                 maxFallVelocity = maxFallVelocity,
-                stickGroundForce = 0f,
                 airborneDelay = airborneDelay,
                 doNotChangeVelocityWhileAirborne = doNotChangeVelocityWhileAirborne,
                 landedPauseMovementDuration = landedPauseMovementDuration,
@@ -130,7 +129,7 @@ namespace MultiplayerARPG
         public override void EntityStart()
         {
             Functions.EntityStart();
-            CacheMotor.SetPosition(CacheTransform.position);
+            CacheMotor.SetPosition(EntityTransform.position);
         }
 
         public override void ComponentOnEnable()
@@ -139,7 +138,7 @@ namespace MultiplayerARPG
             CacheMotor.enabled = true;
             try
             {
-                CacheMotor.SetPosition(CacheTransform.position);
+                CacheMotor.SetPosition(EntityTransform.position);
             }
             catch { }
         }
@@ -326,6 +325,11 @@ namespace MultiplayerARPG
         public void ClearAllForces()
         {
             Functions.ClearAllForces();
+        }
+
+        public Vector3 GetSnapToGroundMotion(Vector3 motion, Vector3 platformMotion, Vector3 forceMotion)
+        {
+            return Vector3.zero;
         }
     }
 }
