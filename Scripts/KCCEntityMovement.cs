@@ -18,14 +18,12 @@ namespace MultiplayerARPG
         public MovementSecure movementSecure = MovementSecure.NotSecure;
 
         [Header("Movement Settings")]
-        public bool allowJumpingWhenSliding = false;
         public float jumpHeight = 2f;
         public ApplyJumpForceMode applyJumpForceMode = ApplyJumpForceMode.ApplyImmediately;
         public float applyJumpForceFixedDuration;
         public float backwardMoveSpeedRate = 0.75f;
         public float gravity = 9.81f;
         public float maxFallVelocity = 40f;
-        public LayerMask platformLayerMask = 1;
         [Tooltip("Delay before character change from grounded state to airborne")]
         public float airborneDelay = 0.01f;
         public bool doNotChangeVelocityWhileAirborne;
