@@ -44,7 +44,7 @@ namespace MultiplayerARPG
         public float forceUngroundAfterJumpDuration = 0.1f;
 
         [Header("Dashing")]
-        public EntityMovementForceApplier dashingForceApplier = new EntityMovementForceApplier();
+        public EntityMovementForceApplierData dashingForceApplier = EntityMovementForceApplierData.CreateDefault();
 
         [Header("Root Motion Settings")]
         [FormerlySerializedAs("useRootMotionWhileNotMoving")]
@@ -317,9 +317,14 @@ namespace MultiplayerARPG
             return Functions.FindGroundedPosition(fromPosition, findDistance, out result);
         }
 
-        public void ApplyForce(Vector3 direction, ApplyMovementForceMode mode, float force, float deceleration, float duration)
+        public void ApplyForce(ApplyMovementForceMode mode, Vector3 direction, ApplyMovementForceSourceType sourceType, int sourceDataId, int sourceLevel, float force, float deceleration, float duration)
         {
-            Functions.ApplyForce(direction, mode, force, deceleration, duration);
+            Functions.ApplyForce(mode, direction, sourceType, sourceDataId, sourceLevel, force, deceleration, duration);
+        }
+
+        public EntityMovementForceApplier FindForceByActionKey(ApplyMovementForceSourceType sourceType, int sourceDataId)
+        {
+            return Functions.FindForceByActionKey(sourceType, sourceDataId);
         }
 
         public void ClearAllForces()
