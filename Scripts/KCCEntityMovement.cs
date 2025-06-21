@@ -73,7 +73,6 @@ namespace MultiplayerARPG
         public bool HasNavPaths { get { return Functions.HasNavPaths; } }
 
         protected Vector3 _motion;
-        protected float _yAngle;
         protected Vector3 _internalVelocityAdd;
 
         public override void EntityAwake()
@@ -169,14 +168,44 @@ namespace MultiplayerARPG
             Functions.OnTriggerExit(other);
         }
 
+        public override void EntityUpdate()
+        {
+#if UNITY_EDITOR
+            Functions.stoppingDistance = stoppingDistance;
+            Functions.movementSecure = movementSecure;
+            Functions.jumpHeight = jumpHeight;
+            Functions.applyJumpForceMode = applyJumpForceMode;
+            Functions.applyJumpForceFixedDuration = applyJumpForceFixedDuration;
+            Functions.backwardMoveSpeedRate = backwardMoveSpeedRate;
+            Functions.gravity = gravity;
+            Functions.maxFallVelocity = maxFallVelocity;
+            Functions.airborneDelay = airborneDelay;
+            Functions.doNotChangeVelocityWhileAirborne = doNotChangeVelocityWhileAirborne;
+            Functions.landedPauseMovementDuration = landedPauseMovementDuration;
+            Functions.beforeCrawlingPauseMovementDuration = beforeCrawlingPauseMovementDuration;
+            Functions.afterCrawlingPauseMovementDuration = afterCrawlingPauseMovementDuration;
+            Functions.underWaterThreshold = underWaterThreshold;
+            Functions.autoSwimToSurface = autoSwimToSurface;
+            Functions.alwaysUseRootMotion = alwaysUseRootMotion;
+            Functions.dashingForceApplier = dashingForceApplier;
+            Functions.useRootMotionForMovement = useRootMotionForMovement;
+            Functions.useRootMotionForAirMovement = useRootMotionForAirMovement;
+            Functions.useRootMotionForJump = useRootMotionForJump;
+            Functions.useRootMotionForFall = useRootMotionForFall;
+            Functions.useRootMotionUnderWater = useRootMotionUnderWater;
+            Functions.snapThreshold = snapThreshold;
+#endif
+            float deltaTime = Time.deltaTime;
+            Functions.UpdateRotation(deltaTime);
+        }
+
         public void BeforeCharacterUpdate(float deltaTime)
         {
         }
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
-            Functions.UpdateRotation(deltaTime);
-            currentRotation = Quaternion.Euler(0, _yAngle, 0);
+
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
@@ -234,12 +263,14 @@ namespace MultiplayerARPG
 
         public void Move(Vector3 motion)
         {
+            if (Functions.IsUnderWater && motion.y > 0)
+                CacheMotor.ForceUnground();
             _motion = motion;
         }
 
         public void RotateY(float yAngle)
         {
-            _yAngle = yAngle;
+            CacheMotor.SetRotation(Quaternion.Euler(0f, yAngle, 0f));
         }
 
         public void OnJumpForceApplied(float verticalVelocity)
