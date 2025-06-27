@@ -12,6 +12,8 @@ namespace MultiplayerARPG
     [RequireComponent(typeof(KinematicCharacterMotor))]
     public class KCCEntityMovement : BaseNetworkedGameEntityComponent<BaseGameEntity>, IEntityMovementComponent, ICharacterController, IBuiltInEntityMovement3D
     {
+        private static readonly RaycastHit[] s_findGroundRaycastHits = new RaycastHit[8];
+
         [Header("Movement AI")]
         [Range(0.01f, 1f)]
         public float stoppingDistance = 0.1f;
@@ -254,6 +256,11 @@ namespace MultiplayerARPG
             return CacheMotor.GroundingStatus.IsStableOnGround;
         }
 
+        public void SetPosition(Vector3 position)
+        {
+            CacheMotor.SetPosition(position);
+        }
+
         public Bounds GetMovementBounds()
         {
             return CacheCapsuleCollider.bounds;
@@ -343,7 +350,15 @@ namespace MultiplayerARPG
 
         public bool FindGroundedPosition(Vector3 fromPosition, float findDistance, out Vector3 result)
         {
-            return Functions.FindGroundedPosition(fromPosition, findDistance, out result);
+            if (CacheMotor.CharacterSweep(fromPosition + (Vector3.up * findDistance * 0.5f), EntityTransform.rotation, Vector3.down, findDistance, out RaycastHit closestHit, s_findGroundRaycastHits, CacheMotor.StableGroundLayers, QueryTriggerInteraction.Ignore) > 0)
+            {
+                result = closestHit.point;
+                CacheMotor.SetPosition(fromPosition);
+                return true;
+            }
+            result = fromPosition;
+            CacheMotor.SetPosition(fromPosition);
+            return false;
         }
 
         public void ApplyForce(ApplyMovementForceMode mode, Vector3 direction, ApplyMovementForceSourceType sourceType, int sourceDataId, int sourceLevel, float force, float deceleration, float duration)
