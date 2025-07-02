@@ -253,7 +253,7 @@ namespace MultiplayerARPG
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             Functions.UpdateMovement(deltaTime);
-            currentVelocity = _motion / deltaTime;
+            currentVelocity = _motion;
         }
 
         public void AfterCharacterUpdate(float deltaTime)
@@ -351,7 +351,6 @@ namespace MultiplayerARPG
                 return motion;
             Vector3 raycastOrigin = GetCrawlCheckCenter();
             Vector3 moveDirection = motion.GetXZ().normalized;
-            float moveSpeed = motion.magnitude;
             float nearestHitDistance = float.MaxValue;
             float nearestRaycastAngle = 0f;
             RaycastHit? nearestHit = null;
@@ -431,11 +430,11 @@ namespace MultiplayerARPG
             return CacheCapsuleCollider.bounds;
         }
 
-        public void Move(MovementState movementState, ExtraMovementState extraMovementState, Vector3 motion)
+        public void Move(MovementState movementState, ExtraMovementState extraMovementState, Vector3 motion, float deltaTime)
         {
             if (Functions.IsUnderWater && motion.y > 0)
                 CacheMotor.ForceUnground();
-            _motion = motion;
+            _motion = AdjustCrawlMotion(movementState, extraMovementState, motion / deltaTime);
         }
 
         public void RotateY(float yAngle)
