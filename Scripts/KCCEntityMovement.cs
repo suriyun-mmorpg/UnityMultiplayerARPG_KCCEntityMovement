@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using KinematicCharacterController;
 using LiteNetLib.Utils;
 using LiteNetLibManager;
@@ -544,6 +545,11 @@ namespace MultiplayerARPG
         public Vector3 GetSnapToGroundMotion(Vector3 motion, Vector3 platformMotion, Vector3 forceMotion)
         {
             return Vector3.zero;
+        }
+
+        public UniTask WaitClientTeleportConfirm()
+        {
+            return Functions.WaitClientTeleportConfirm();
         }
     }
 }
