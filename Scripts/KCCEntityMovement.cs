@@ -237,7 +237,7 @@ namespace MultiplayerARPG
             Functions.snapThreshold = snapThreshold;
 #endif
             float deltaTime = Time.deltaTime;
-            Functions.UpdateRotation(deltaTime);
+            Functions.EntityUpdate(deltaTime);
             if (_forceUngroundCountdown > 0f)
                 _forceUngroundCountdown -= deltaTime;
         }
@@ -253,13 +253,11 @@ namespace MultiplayerARPG
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            Functions.UpdateMovement(deltaTime);
             currentVelocity = _motion;
         }
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            Functions.AfterMovementUpdate(deltaTime);
             Functions.FixSwimUpPosition(deltaTime);
         }
 
