@@ -239,6 +239,7 @@ namespace MultiplayerARPG
             Functions.useRootMotionUnderWater = useRootMotionUnderWater;
 #endif
             float deltaTime = Time.deltaTime;
+            Functions.UpdateMovement(deltaTime);
             Functions.UpdateRotation(deltaTime);
             if (_forceUngroundCountdown > 0f)
                 _forceUngroundCountdown -= deltaTime;
@@ -255,13 +256,11 @@ namespace MultiplayerARPG
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            Functions.UpdateMovement(deltaTime);
             currentVelocity = _motion;
         }
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            Functions.AfterMovementUpdate(deltaTime);
             Functions.FixSwimUpPosition(deltaTime);
         }
 
