@@ -52,7 +52,7 @@ namespace MultiplayerARPG
             float radius = Mathf.Min(bounds.extents.x, bounds.extents.z);
             kccMotor.SetCapsuleDimensions(radius, height, height * 0.5f);
 
-            return obj.AddComponent<KCCEntityMovement>();
+            return obj.AddComponent<SimpleKCCEntityMovement>();
         }
     }
 }
