@@ -520,11 +520,9 @@ namespace MultiplayerARPG
             if (CacheMotor.CharacterSweep(fromPosition + (Vector3.up * findDistance * 0.5f), EntityTransform.rotation, Vector3.down, findDistance, out RaycastHit closestHit, s_findGroundRaycastHits, CacheMotor.StableGroundLayers, QueryTriggerInteraction.Ignore) > 0)
             {
                 result = closestHit.point;
-                CacheMotor.SetPosition(fromPosition);
                 return true;
             }
             result = fromPosition;
-            CacheMotor.SetPosition(fromPosition);
             return false;
         }
 
