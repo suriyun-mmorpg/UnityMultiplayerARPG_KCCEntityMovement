@@ -13,8 +13,6 @@ namespace MultiplayerARPG
     [RequireComponent(typeof(KinematicCharacterMotor))]
     public class KCCEntityMovement : BaseNetworkedGameEntityComponent<BaseGameEntity>, IEntityMovementComponent, ICharacterController, IBuiltInEntityMovement3D
     {
-        private static readonly RaycastHit[] s_findGroundRaycastHits = new RaycastHit[8];
-
         [Header("Network Settings")]
         public MovementSecure movementSecure = MovementSecure.NotSecure;
         [Tooltip("If distance between current frame and previous frame is greater than this value, then it will determine that changes occurs and will sync transform later")]
@@ -109,7 +107,6 @@ namespace MultiplayerARPG
         protected Vector3 _internalVelocityAdd;
         protected int _allowToJumpOrDashCheckFrame = 0;
         protected bool _isAllowToJumpOrDash = true;
-        protected float[] _crawlRaycastDegrees;
 
         public override void EntityAwake()
         {
@@ -124,6 +121,7 @@ namespace MultiplayerARPG
             CacheCapsuleCollider = gameObject.GetOrAddComponent<CapsuleCollider>();
             CacheMotor = gameObject.GetOrAddComponent<KinematicCharacterMotor>();
             CacheMotor.CharacterController = this;
+            ColliderAdjustment = gameObject.GetComponent<KCCColliderAdjustment>();
             // Disable unused component
             LiteNetLibTransform disablingComp = gameObject.GetComponent<LiteNetLibTransform>();
             if (disablingComp != null)
@@ -165,24 +163,6 @@ namespace MultiplayerARPG
                 snapThreshold = snapThreshold,
             };
             Functions.StopMoveFunction();
-            _crawlRaycastDegrees = CalculateCrawlRaycastDegrees();
-        }
-
-        private float[] CalculateCrawlRaycastDegrees()
-        {
-            float[] result;
-            if (crawlCheckRaycasts > 0)
-            {
-                result = new float[crawlCheckRaycasts];
-                float increaseRaycastDegree = 360f / crawlCheckRaycasts;
-                result = new float[crawlCheckRaycasts];
-                for (int i = 0; i < crawlCheckRaycasts; ++i)
-                {
-                    result[i] = i * increaseRaycastDegree;
-                }
-                return result;
-            }
-            return null;
         }
 
         public override void EntityStart()
@@ -365,92 +345,36 @@ namespace MultiplayerARPG
         {
             if (ColliderAdjustment == null)
                 return true;
-            int hitCount = Physics.CapsuleCastNonAlloc(
-                EntityTransform.position, EntityTransform.position + Vector3.up * ColliderAdjustment.CrouchSettings.height,
-                ColliderAdjustment.CrouchSettings.radius, Vector3.up, s_findGroundRaycastHits, 0.1f,
-                GameInstance.Singleton.GetGameEntityGroundDetectionLayerMask(), QueryTriggerInteraction.Ignore);
-            return hitCount <= 0;
+            var settings = ColliderAdjustment.CrouchSettings;
+            return this.AllowToChangePose(settings.height, settings.radius, CacheMotor.StableGroundLayers);
         }
 
         public bool AllowToCrawl()
         {
-            if (crawlCheckRaycasts == 0f)
-                return true;
-            Vector3 raycastOrigin = GetCrawlCheckCenter();
-            for (int i = 0; i < crawlCheckRaycasts; ++i)
-            {
-                int hitCount = Physics.RaycastNonAlloc(
-                    raycastOrigin, Quaternion.Euler(0f, _crawlRaycastDegrees[i], 0f) * EntityTransform.forward,
-                    s_findGroundRaycastHits, crawlCheckRadius,
-                    GameInstance.Singleton.GetGameEntityGroundDetectionLayerMask(), QueryTriggerInteraction.Ignore);
-                if (hitCount > 0)
-                    return false;
-            }
-            return true;
+            return this.AllowToCrawl(crawlCheckRaycasts, crawlCheckOffsets, crawlCheckRadius);
         }
 
         public bool AllowToStand()
         {
             if (ColliderAdjustment == null)
                 return true;
-            int hitCount = Physics.CapsuleCastNonAlloc(
-                EntityTransform.position, EntityTransform.position + Vector3.up * ColliderAdjustment.StandSettings.height,
-                ColliderAdjustment.StandSettings.radius, Vector3.up, s_findGroundRaycastHits, 0.1f,
-                GameInstance.Singleton.GetGameEntityGroundDetectionLayerMask(), QueryTriggerInteraction.Ignore);
-            return hitCount <= 0;
+            var settings = ColliderAdjustment.StandSettings;
+            return this.AllowToChangePose(settings.height, settings.radius, CacheMotor.StableGroundLayers);
         }
 
         private Vector3 AdjustCrawlMotion(MovementState movementState, ExtraMovementState extraMovementState, Vector3 motion)
         {
-            if (extraMovementState != ExtraMovementState.IsCrawling || crawlCheckRaycasts == 0 || !IsClient)
-                return motion;
-            Vector3 raycastOrigin = GetCrawlCheckCenter();
-            Vector3 moveDirection = motion.GetXZ().normalized;
-            float nearestHitDistance = float.MaxValue;
-            float nearestRaycastAngle = 0f;
-            RaycastHit? nearestHit = null;
-            for (int i = 0; i < crawlCheckRaycasts; ++i)
-            {
-                Vector3 raycastDirection = Quaternion.Euler(0f, _crawlRaycastDegrees[i], 0f) * moveDirection;
-                float raycastAngle = Vector3.Angle(moveDirection, raycastDirection);
-                if (raycastAngle > 90f)
-                    continue;
-                int hitCount = Physics.RaycastNonAlloc(raycastOrigin, raycastDirection, s_findGroundRaycastHits, crawlCheckRadius, CacheMotor.StableGroundLayers, QueryTriggerInteraction.Ignore);
-                if (hitCount <= 0)
-                    continue;
-                for (int j = 0; j < hitCount; ++j)
-                {
-                    RaycastHit hit = s_findGroundRaycastHits[j];
-                    if (hit.distance >= nearestHitDistance)
-                        continue;
-                    nearestRaycastAngle = raycastAngle;
-                    nearestHitDistance = hit.distance;
-                    nearestHit = hit;
-                }
-            }
-            if (nearestHit.HasValue)
-            {
-                Vector3 hitNormal = nearestHit.Value.normal;
-                if (nearestHit.Value.distance < crawlCheckRadius * 0.9f)
-                    return motion + hitNormal * crawlCheckRadius;
-                return Vector3.ProjectOnPlane(motion, hitNormal);
-            }
-            return motion;
+            return this.AdjustCrawlMotion(movementState, extraMovementState, motion, crawlCheckRaycasts, crawlCheckOffsets, crawlCheckRadius, CacheMotor.StableGroundLayers);
         }
 
-        protected virtual Vector3 GetGroundCheckCenter()
+        protected Vector3 GetGroundCheckCenter()
         {
             return new Vector3(EntityTransform.position.x, EntityTransform.position.y - groundCheckOffsets, EntityTransform.position.z);
         }
 
-        protected virtual Vector3 GetAirborneCheckCenter()
+        protected Vector3 GetAirborneCheckCenter()
         {
             return new Vector3(EntityTransform.position.x, EntityTransform.position.y - airborneCheckOffsets, EntityTransform.position.z);
-        }
-
-        protected virtual Vector3 GetCrawlCheckCenter()
-        {
-            return new Vector3(EntityTransform.position.x, EntityTransform.position.y - crawlCheckOffsets, EntityTransform.position.z);
         }
 
 #if UNITY_EDITOR
@@ -461,16 +385,7 @@ namespace MultiplayerARPG
             Gizmos.DrawWireSphere(GetGroundCheckCenter(), groundCheckRadius);
             Gizmos.color = airborneCheckGizmosColor;
             Gizmos.DrawWireSphere(GetAirborneCheckCenter(), airborneCheckRadius);
-            if (crawlCheckRaycasts > 0)
-            {
-                Gizmos.color = crawlCheckGizmosColor;
-                if (_crawlRaycastDegrees == null)
-                    _crawlRaycastDegrees = CalculateCrawlRaycastDegrees();
-                for (int i = 0; i < crawlCheckRaycasts; ++i)
-                {
-                    Gizmos.DrawLine(GetCrawlCheckCenter(), GetCrawlCheckCenter() + Quaternion.Euler(0f, _crawlRaycastDegrees[i], 0f) * EntityTransform.forward * crawlCheckRadius);
-                }
-            }
+            this.DrawCrawlCheckRaycasts(crawlCheckRaycasts, crawlCheckOffsets, crawlCheckRadius, crawlCheckGizmosColor);
             Gizmos.color = prevColor;
         }
 #endif
@@ -570,13 +485,7 @@ namespace MultiplayerARPG
 
         public bool FindGroundedPosition(Vector3 fromPosition, float findDistance, out Vector3 result)
         {
-            if (CacheMotor.CharacterSweep(fromPosition + (Vector3.up * findDistance * 0.5f), EntityTransform.rotation, Vector3.down, findDistance, out RaycastHit closestHit, s_findGroundRaycastHits, CacheMotor.StableGroundLayers, QueryTriggerInteraction.Ignore) > 0)
-            {
-                result = closestHit.point;
-                return true;
-            }
-            result = fromPosition;
-            return false;
+            return this.FindGroundedPosition(fromPosition, groundCheckRadius, findDistance, CacheMotor.StableGroundLayers, 0f, out result);
         }
 
         public void ApplyForce(ApplyMovementForceMode mode, Vector3 direction, ApplyMovementForceSourceType sourceType, int sourceDataId, int sourceLevel, float force, float deceleration, float duration)
