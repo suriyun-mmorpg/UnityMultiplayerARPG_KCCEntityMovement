@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 5458723799309432114}
   - component: {fileID: 4839905190221779996}
   - component: {fileID: 1744138434420389752}
+  - component: {fileID: 159005433328303100}
   m_Layer: 8
   m_Name: Male_KCC
   m_TagString: Untagged
@@ -558,10 +559,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoAssignAssetIdIfEmpty: 1
+  forceUseAssetGUIDAsAssetId: 0
   assetId: bc42f4fe177bded4093239aa0fb963e5
-  autoAssignSceneObjectId: 1
+  autoAssignSceneObjectIdIfEmpty: 1
   sceneObjectId: 0
+  forceNotSceneObject: 0
   networkedObjectId: 0
+  syncChannelId: 0
+  defaultRpcChannelId: 0
   visibleRange: 0
   alwaysVisible: 0
   doNotDestroyWhenDisconnect: 0
@@ -611,34 +616,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c74016ac73a5de489347503fc752e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.01
+  _behaviourIndex: 0
   syncMetaDataId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   entityTitle: Male (CC)
   entityTitles: []
   syncTitle:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   ownerObjects: []
   nonOwnerObjects: []
   model: {fileID: 0}
@@ -662,27 +652,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isImmune:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currentHp:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   meleeDamageTransform: {fileID: 128530181839769856}
   missileDamageTransform: {fileID: 128530181839769856}
   characterUiTransform: {fileID: 128530181839769633}
@@ -700,204 +678,116 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   id:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   level:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   exp:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currentMp:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currentStamina:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 0
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currentFood:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currentWater:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   equipWeaponSet:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   isWeaponsSheathed:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 2
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   pitch:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 2
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   lookPosition:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 2
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: {x: 0, y: 0, z: 0}
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
     valueChangeDistance: 0.01
   aimPosition:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 2
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   targetEntityId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 2
-    sendInterval: 0.1
-    dataChannel: 1
-    deliveryMethod: 2
-    clientDataChannel: 3
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   mount:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value:
-      type: 0
-      sourceId: 
-      mountRemainsDuration: 0
-      level: 0
-      currentHp: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   selectableWeaponSets:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   attributes:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   skills:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   skillUsages:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   buffs:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   equipItems:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   nonEquipItems:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   summons:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   characterDatabases:
   - {fileID: 11400000, guid: 8c31218a0e7c7604ea751e1a56a13a76, type: 2}
   - {fileID: 11400000, guid: f924bc5e901d46141bb3c3ca9b6ef27a, type: 2}
@@ -910,282 +800,182 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   dataId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   factionId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   statPoint:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   skillPoint:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   gold:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   userGold:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   userCash:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   partyId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   guildId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
+  persistChannel:
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
+  persistMapName:
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
+  persistPosition:
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
+    valueChangeDistance: 0.01
+  persistSafeArea:
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   respawnMapName:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   respawnPosition:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: {x: 0, y: 0, z: 0}
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
     valueChangeDistance: 0.01
   iconDataId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   frameDataId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   titleDataId:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   lastDeadTime:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   unmuteTime:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   isPkOn:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   pkPoint:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   consecutivePkKills:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   reputation:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 0
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 1
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   isWarping:
-    behaviour: {fileID: 0}
-    elementId: 0
-    syncBehaviour: 0
-    syncMode: 1
-    sendInterval: 0.1
-    dataChannel: 0
-    deliveryMethod: 2
-    clientDataChannel: 0
-    clientDeliveryMethod: 1
-    value: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   hotkeys:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   quests:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   currencies:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   privateBools:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   privateInts:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   privateFloats:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 1
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   publicBools:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   publicInts:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   publicFloats:
-    behaviour: {fileID: 0}
-    elementId: 0
-    dataChannel: 0
-    forOwnerOnly: 0
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
+  guildSkills:
+    _behaviour: {fileID: 0}
+    _elementId: 0
+    logTagName: 
+    isDebug: 0
   writeAddonLog: 0
 --- !u!114 &128530181839777822
 MonoBehaviour:
@@ -1308,6 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTpsModel: {fileID: 1309875590638129887}
+  fpsModelPrefab: {fileID: 0}
   addressableFpsModelPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -1350,10 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c71113345a02a44b7cb3da53d4d80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
   doNotRandomAnimation: 0
   animationResetDelay: 2
 --- !u!114 &8011631415084816058
@@ -1368,10 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ae6d49d900d44f9ee7b5e151f5a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &-5627424318563412688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,10 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f576f59fc954449429e9ad738be7a615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &326845234179000720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,10 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaafded55144074da73cbd672597457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &463424129899975589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,10 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f653b457982431e418621ca9efdedad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
   maxQueueSize: 5
 --- !u!114 &1309875590638129887
 MonoBehaviour:
@@ -1484,14 +1260,6 @@ MonoBehaviour:
       instantiatedObjects: []
     instantiatedObjectGroups: []
     activatingInstantiateObjectIndex: 0
-  - equipSocket: WeaponR
-    transform: {fileID: 128530181839769735}
-    defaultModel: {fileID: 0}
-    instantiatedObjects: []
-    defaultInstantiatedObjectGroup:
-      instantiatedObjects: []
-    instantiatedObjectGroups: []
-    activatingInstantiateObjectIndex: 0
   - equipSocket: ElbowL
     transform: {fileID: 128530181839770442}
     defaultModel: {fileID: 128530181839766603}
@@ -1508,9 +1276,9 @@ MonoBehaviour:
       instantiatedObjects: []
     instantiatedObjectGroups: []
     activatingInstantiateObjectIndex: 0
-  - equipSocket: KneeR
-    transform: {fileID: 128530181839769985}
-    defaultModel: {fileID: 128530181839769431}
+  - equipSocket: ElbowR
+    transform: {fileID: 128530181839770380}
+    defaultModel: {fileID: 128530181839769450}
     instantiatedObjects: []
     defaultInstantiatedObjectGroup:
       instantiatedObjects: []
@@ -1524,25 +1292,17 @@ MonoBehaviour:
       instantiatedObjects: []
     instantiatedObjectGroups: []
     activatingInstantiateObjectIndex: 0
-  - equipSocket: KneeL
-    transform: {fileID: 128530181839769771}
-    defaultModel: {fileID: 128530181839766378}
-    instantiatedObjects: []
-    defaultInstantiatedObjectGroup:
-      instantiatedObjects: []
-    instantiatedObjectGroups: []
-    activatingInstantiateObjectIndex: 0
-  - equipSocket: ElbowR
-    transform: {fileID: 128530181839770380}
-    defaultModel: {fileID: 128530181839769450}
-    instantiatedObjects: []
-    defaultInstantiatedObjectGroup:
-      instantiatedObjects: []
-    instantiatedObjectGroups: []
-    activatingInstantiateObjectIndex: 0
   - equipSocket: HipL
     transform: {fileID: 128530181839770189}
     defaultModel: {fileID: 128530181839766932}
+    instantiatedObjects: []
+    defaultInstantiatedObjectGroup:
+      instantiatedObjects: []
+    instantiatedObjectGroups: []
+    activatingInstantiateObjectIndex: 0
+  - equipSocket: KneeL
+    transform: {fileID: 128530181839769771}
+    defaultModel: {fileID: 128530181839766378}
     instantiatedObjects: []
     defaultInstantiatedObjectGroup:
       instantiatedObjects: []
@@ -1556,9 +1316,9 @@ MonoBehaviour:
       instantiatedObjects: []
     instantiatedObjectGroups: []
     activatingInstantiateObjectIndex: 0
-  - equipSocket: Shield
-    transform: {fileID: 128530181839773635}
-    defaultModel: {fileID: 0}
+  - equipSocket: KneeR
+    transform: {fileID: 128530181839769985}
+    defaultModel: {fileID: 128530181839769431}
     instantiatedObjects: []
     defaultInstantiatedObjectGroup:
       instantiatedObjects: []
@@ -1566,6 +1326,22 @@ MonoBehaviour:
     activatingInstantiateObjectIndex: 0
   - equipSocket: WeaponL
     transform: {fileID: 128530181839770306}
+    defaultModel: {fileID: 0}
+    instantiatedObjects: []
+    defaultInstantiatedObjectGroup:
+      instantiatedObjects: []
+    instantiatedObjectGroups: []
+    activatingInstantiateObjectIndex: 0
+  - equipSocket: WeaponR
+    transform: {fileID: 128530181839769735}
+    defaultModel: {fileID: 0}
+    instantiatedObjects: []
+    defaultInstantiatedObjectGroup:
+      instantiatedObjects: []
+    instantiatedObjectGroups: []
+    activatingInstantiateObjectIndex: 0
+  - equipSocket: Shield
+    transform: {fileID: 128530181839773635}
     defaultModel: {fileID: 0}
     instantiatedObjects: []
     defaultInstantiatedObjectGroup:
@@ -9876,10 +9652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f59b792856e9da488870d43b58f675c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &572363081257683148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9892,10 +9665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b7c18fcf2a2384b8e3e93ea376db6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &3682458699647822317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9908,10 +9678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af2fdfb0f755ab4a9847cb15871c95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!54 &-3556455767959197985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10016,32 +9783,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bd989a4f022f749b9f3ca0c6b71579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
-  stoppingDistance: 0.1
+  _behaviourIndex: 0
   movementSecure: 0
-  allowJumpingWhenSliding: 0
+  positionThreshold: 0.01
+  eulerAnglesThreshold: 1
+  keepAliveTicks: 10
+  interpSnapThreshold: 2
+  stoppingDistance: 0.1
   jumpHeight: 2
   applyJumpForceMode: 0
   applyJumpForceFixedDuration: 0
-  backwardMoveSpeedRate: 0.75
   gravity: 9.81
   maxFallVelocity: 40
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  airborneDelay: 0.01
+  groundedVerticalVelocity: -2
   doNotChangeVelocityWhileAirborne: 0
+  standForwardMoveSpeedRate: 1
+  standForwardSideMoveSpeedRate: 1
+  standSideMoveSpeedRate: 1
+  standBackwardSideMoveSpeedRate: 0.75
+  standBackwardMoveSpeedRate: 0.75
+  crouchForwardMoveSpeedRate: 1
+  crouchForwardSideMoveSpeedRate: 1
+  crouchSideMoveSpeedRate: 1
+  crouchBackwardSideMoveSpeedRate: 0.75
+  crouchBackwardMoveSpeedRate: 0.75
+  crawlForwardMoveSpeedRate: 1
+  crawlForwardSideMoveSpeedRate: 1
+  crawlSideMoveSpeedRate: 1
+  crawlBackwardSideMoveSpeedRate: 0.75
+  crawlBackwardMoveSpeedRate: 0.75
+  swimForwardMoveSpeedRate: 1
+  swimForwardSideMoveSpeedRate: 1
+  swimSideMoveSpeedRate: 1
+  swimBackwardSideMoveSpeedRate: 0.75
+  swimBackwardMoveSpeedRate: 0.75
   landedPauseMovementDuration: 0
   beforeCrawlingPauseMovementDuration: 0
   afterCrawlingPauseMovementDuration: 0
   underWaterThreshold: 0.75
   autoSwimToSurface: 0
+  groundCheckOffsets: 0.14
+  groundCheckRadius: 0.28
+  groundCheckGizmosColor: {r: 0, g: 0, b: 1, a: 1}
+  airborneCheckOffsets: 0.14
+  airborneCheckRadius: 0.28
+  airborneCheckGizmosColor: {r: 0, g: 1, b: 1, a: 1}
   forceUngroundAfterJumpDuration: 0.1
+  crawlCheckOffsets: -0.14
+  crawlCheckRaycasts: 0
+  crawlCheckRadius: 1
+  crawlCheckGizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   dashingForceApplier:
-    mode: 0
     speed: 20
     deceleration: 20
     duration: 0
@@ -10051,6 +9843,8 @@ MonoBehaviour:
   useRootMotionForJump: 0
   useRootMotionForFall: 0
   useRootMotionUnderWater: 0
+  useRootMotionClimbing: 0
+  rootMotionGroundedVerticalVelocity: -2
   snapThreshold: 5
 --- !u!114 &4839905190221779996
 MonoBehaviour:
@@ -10064,10 +9858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cd55fe8aac141488b495f85d5eaef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourIndex: 0
-  dataChannel: 0
-  sendOptions: 0
-  sendInterval: 0.1
+  _behaviourIndex: 0
 --- !u!114 &1744138434420389752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10078,6 +9869,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f1ebb96c2e8470489eb6750032b0257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &159005433328303100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128530181839766150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3095f43324f7cc948b12c70cae24cecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &128530181839766225
