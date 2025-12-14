@@ -216,7 +216,6 @@ namespace MultiplayerARPG
                 useRootMotionUnderWater = useRootMotionUnderWater,
                 useRootMotionClimbing = useRootMotionClimbing,
                 rootMotionGroundedVerticalVelocity = rootMotionGroundedVerticalVelocity,
-                snapThreshold = snapThreshold,
             };
             Functions.StopMoveFunction();
         }
@@ -330,7 +329,6 @@ namespace MultiplayerARPG
             Functions.useRootMotionForJump = useRootMotionForJump;
             Functions.useRootMotionForFall = useRootMotionForFall;
             Functions.useRootMotionUnderWater = useRootMotionUnderWater;
-            Functions.snapThreshold = snapThreshold;
 #endif
             float deltaTime = Time.deltaTime;
             Functions.EntityUpdate(deltaTime);
