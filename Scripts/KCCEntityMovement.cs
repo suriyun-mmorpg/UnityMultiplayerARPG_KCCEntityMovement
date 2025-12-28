@@ -245,6 +245,17 @@ namespace MultiplayerARPG
         public override void OnSetOwnerClient(bool isOwnerClient)
         {
             Functions.OnSetOwnerClient(isOwnerClient);
+            switch (movementSecure)
+            {
+                case MovementSecure.ServerAuthoritative:
+                    if (!IsServer && !IsOwnerClientOrOwnedByServer)
+                        CacheMotor.enabled = false;
+                    break;
+                default:
+                    if (!IsOwnerClientOrOwnedByServer)
+                        CacheMotor.enabled = false;
+                    break;
+            }
         }
 
         public override void EntityOnIdentityInitialize()

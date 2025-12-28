@@ -231,6 +231,8 @@ namespace MultiplayerARPG
         {
             base.OnSetOwnerClient(isOwnerClient);
             Functions.OnSetOwnerClient(isOwnerClient);
+            if (!IsOwnerClientOrOwnedByServer)
+                CacheMotor.enabled = false;
         }
 
         public override void EntityOnDestroy()
