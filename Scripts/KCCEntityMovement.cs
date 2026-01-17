@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
+using Insthync.ManagedUpdating;
 using KinematicCharacterController;
 using LiteNetLib.Utils;
 using LiteNetLibManager;
-using MultiplayerARPG.Updater;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
