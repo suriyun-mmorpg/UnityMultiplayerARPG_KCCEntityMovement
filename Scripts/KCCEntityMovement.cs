@@ -253,15 +253,7 @@ namespace MultiplayerARPG
 
         private void EnableComponents()
         {
-            switch (movementSecure)
-            {
-                case MovementSecure.ServerAuthoritative:
-                    CacheMotor.enabled = IsServer && IsOwnerClientOrOwnedByServer;
-                    break;
-                default:
-                    CacheMotor.enabled = IsOwnerClientOrOwnedByServer;
-                    break;
-            }
+            CacheMotor.enabled = IsOwnerClientOrOwnedByServer;
         }
 
         private void OnAnimatorMove()
