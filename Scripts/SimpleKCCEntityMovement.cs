@@ -248,8 +248,7 @@ namespace MultiplayerARPG
 
         private void EnableComponents()
         {
-            if (!IsOwnerClientOrOwnedByServer)
-                CacheMotor.enabled = false;
+            CacheMotor.enabled = IsOwnerClientOrOwnedByServer;
         }
 
         protected override void OnDestroy()

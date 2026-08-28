@@ -256,12 +256,10 @@ namespace MultiplayerARPG
             switch (movementSecure)
             {
                 case MovementSecure.ServerAuthoritative:
-                    if (!IsServer && !IsOwnerClientOrOwnedByServer)
-                        CacheMotor.enabled = false;
+                    CacheMotor.enabled = IsServer && IsOwnerClientOrOwnedByServer;
                     break;
                 default:
-                    if (!IsOwnerClientOrOwnedByServer)
-                        CacheMotor.enabled = false;
+                    CacheMotor.enabled = IsOwnerClientOrOwnedByServer;
                     break;
             }
         }
